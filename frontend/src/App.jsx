@@ -1,6 +1,9 @@
 import './App.css'
 import React from 'react'
 import logo from './assets/images/NoteCodeLogo.svg'
+import LanguageSelectBtn from './components/LanguageSelectBtn'
+import CopyButton from './components/CopyButton'
+import ShareButton from './components/ShareButton'
 function App() {
 
 
@@ -15,8 +18,19 @@ function App() {
       </div>
 
       {/* Editor */}
-      <div className="editor">
-        <h1>Editor</h1>
+      <div className="editor  bg-red-300 mb-10 min-h-80 max-w-[70vw] min-w-[80vw] rounded-lg m-auto">
+        <main className='flex flex-col justify-center items-cente min-h-[80%] h-96'>
+          <div className="editor-container ">Editor</div>
+        </main>
+        <footer className='action-btns flex justify-between items-center px-8'>
+          <div className='flex gap-2'>
+            <LanguageSelectBtn  options={["Html", "Css", "Javascript"]}/>
+            <LanguageSelectBtn  options={["Dark", "Light"]}/></div>
+          <div className='flex gap-2'>
+            <CopyButton buttonLable={"Copy"}/>
+          <ShareButton buttonLable={"Share"}/>
+          </div>
+        </footer>
       </div>
 
      </div>
