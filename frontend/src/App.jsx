@@ -1,34 +1,26 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
 import './App.css'
-
+import React from 'react'
+import logo from './assets/images/NoteCodeLogo.svg'
 function App() {
-  const [count, setCount] = useState(0)
+
 
   return (
-    <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
+    <React.Fragment>
+      <div className={`min-h-[100vh] min-w-screen bg-[url(src/assets/images/Hero-Background-notecode@2x.png)] bg-cover bg-no-repeat pt-2`}>
+      {/* Header */}
+      <div className="header flex flex-col items-center justify-between pb-4">
+        <img src={logo} alt="logo" className='w-40 h-20' />
+        <h3 className=' text-xl font-bold'>Create & Share</h3>
+        <h1 className='text-2xl font-bold'>Code with the world</h1>
       </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
+
+      {/* Editor */}
+      <div className="editor">
+        <h1>Editor</h1>
       </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
+
+     </div>
+    </React.Fragment>
   )
 }
 
