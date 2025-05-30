@@ -1,35 +1,97 @@
 import * as React from 'react';
-import InputLabel from '@mui/material/InputLabel';
+import Button from '@mui/material/Button';
+import ButtonGroup from '@mui/material/ButtonGroup';
+import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown';
+import ClickAwayListener from '@mui/material/ClickAwayListener';
+import Grow from '@mui/material/Grow';
+import Paper from '@mui/material/Paper';
+import Popper from '@mui/material/Popper';
 import MenuItem from '@mui/material/MenuItem';
-import FormControl from '@mui/material/FormControl';
-import Select from '@mui/material/Select';
-import PropTypes from 'prop-types';
+import MenuList from '@mui/material/MenuList';
 
-export default function SelectAutoWidth( {options} ) {
+const options = ['Dark', 'Light'];
 
+export default function ThemeSelectionBtn() {
+  const [open, setOpen] = React.useState(false);
+  const anchorRef = React.useRef(null);
+  const [selectedIndex, setSelectedIndex] = React.useState(1);
+
+  const handleClick = () => {
+    console.info(`You clicked ${options[selectedIndex]}`);
+  };
+
+  const handleMenuItemClick = (event, index) => {
+    setSelectedIndex(index);
+    setOpen(false);
+  };
+
+  const handleToggle = () => {
+    setOpen((prevOpen) => !prevOpen);
+  };
+
+  const handleClose = (event) => {
+    if (anchorRef.current && anchorRef.current.contains(event.target)) {
+      return;
+    }
+
+    setOpen(false);
+  };
 
   return (
-    <div>
-      <FormControl sx={{ m: 1, minWidth: 80 }}>
-        <InputLabel id="demo-simple-select-autowidth-label">{options[0]}</InputLabel>
-        <Select
-          labelId="demo-simple-select-autowidth-label"
-          id="demo-simple-select-autowidth"
-          value={"Theme"}
-          autoWidth
-          label={options[0]}
+    <React.Fragment>
+      <ButtonGroup
+        variant="contained"
+        ref={anchorRef}
+        aria-label="Button group with a nested menu"
+      >
+        <Button variant='outlined' onClick={handleClick}>{options[selectedIndex]}</Button>
+        <Button
+          size="small"
+          variant='outlined'
+          aria-controls={open ? 'theme-menu' : undefined}
+          aria-expanded={open ? 'true' : undefined}
+          aria-label="select theme"
+          aria-haspopup="menu"
+          onClick={handleToggle}
         >
-          <MenuItem value="">
-            <em>{options[0]}</em>
-          </MenuItem>
-          <MenuItem value={20}>{options[0]}</MenuItem>
-          <MenuItem value={21}>{options[1]}</MenuItem>
-        </Select>
-      </FormControl>
-    </div>
+          <ArrowDropDownIcon />
+        </Button>
+      </ButtonGroup>
+      <Popper
+        sx={{ zIndex: 1 }}
+        open={open}
+        anchorEl={anchorRef.current}
+        role={undefined}
+        transition
+        disablePortal
+      >
+        {({ TransitionProps, placement }) => (
+          <Grow
+            {...TransitionProps}
+            style={{
+              transformOrigin:
+                placement === 'bottom' ? 'center top' : 'center bottom',
+            }}
+          >
+            <Paper>
+              <ClickAwayListener onClickAway={handleClose}>
+                <MenuList id="split-button-menu" autoFocusItem>
+                  {options.map((option, index) => (
+                    <MenuItem
+                      key={option}
+                      disabled={index === 2}
+                      selected={index === selectedIndex}
+                      onClick={(event) => handleMenuItemClick(event, index)}
+                    >
+                      {option}
+                    </MenuItem>
+                  ))}
+                </MenuList>
+              </ClickAwayListener>
+            </Paper>
+          </Grow>
+        )}
+      </Popper>
+    </React.Fragment>
   );
 }
-
-SelectAutoWidth.propTypes = {
-  options: PropTypes.array.isRequired,
-};
