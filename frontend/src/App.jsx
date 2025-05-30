@@ -13,38 +13,37 @@ import defaultHTMLCode from './components/monaco-editor/defaultHTMLCode'
 function App() {
   const [code, setCode] = useState(defaultHTMLCode);
 
-  
+
   return (
     <React.Fragment>
       <div className={`min-h-[100vh] min-w-screen bg-[url(src/assets/images/Hero-Background-notecode@2x.png)] bg-cover bg-no-repeat pt-2`}>
-      {/* Header */}
-      <div className="header flex flex-col items-center justify-between pb-4">
-        <img src={logo} alt="logo" className='w-40 h-20' />
-        <h3 className=' text-xl font-bold'>Create & Share</h3>
-        <h1 className='text-2xl font-bold'>Code with the world</h1>
-      </div>
-
-      {/* Editor */}
-      <div className="editor shadow-2xl bg-white mb-10 min-h-96 max-w-[70vw] min-w-[80vw] rounded-lg m-auto pb-4">
-        <main className='flex flex-col justify-center items-cente min-h-[80%]'>
-          {/* <div className="editor-container border-2 border-b-red-800 rounded-lg"> */}
+        {/* Header */}
+        <div className="flex flex-col justify-between items-center pb-4 header">
+          <img src={logo} alt="logo" className='w-40 h-20' />
+          <h3 className='font-bold text-xl'>Create & Share</h3>
+          <h1 className='font-bold text-2xl'>Code with the world</h1>
+        </div>
+        ~
+        {/* Editor */}
+        <div className="bg-white shadow-2xl m-auto mb-10 py-4 rounded-lg rounded-l-lg min-w-[80vw] max-w-[70vw] min-h-96 editor">
+          <main className='flex flex-col justify-center items-cente min-h-[80%]'>
             <MonacoEditor setCode={setCode} value={code} />
-          {/* </div> */}
-        </main>
+          </main>
 
-        {/* Action Buttons */}
-        <footer className='action-btns flex justify-between items-center px-8'>
-          <div className='flex gap-2'>
-            <LanguageSelectBtn/>
-            <ThemeSelectionBtn/></div>
-          <div className='flex gap-2'>
-            <CopyButton buttonLable={"Copy"} code={code} />
-            <ShareButton buttonLable={"Share"}/>
-          </div>
-        </footer>
+          {/* Action Buttons */}
+          <footer className='flex justify-between items-center px-8 action-btns'>
+            <div className='flex gap-2'>
+              <LanguageSelectBtn />
+              <ThemeSelectionBtn />
+            </div>
+            <div className='flex gap-2'>
+              <CopyButton buttonLable={"Copy"} code={code} />
+              <ShareButton buttonLable={"Share"} />
+            </div>
+          </footer>
+        </div>
+
       </div>
-
-     </div>
     </React.Fragment>
   )
 }

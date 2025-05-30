@@ -12,14 +12,14 @@ import * as monaco from "monaco-editor";
 
 
 export default function LanguageSelectBtn() {
-/**
- * Get all available languages from monaco editor
- * Slice the first 10 languages
- * if alises is not null/undefines, Map the languages to get the aliases or names
- * Unshift the "HTML", "CSS", "Javascript" languages to the beginning of the array
- */
-  const availableLanguagesObjs =  monaco.languages.getLanguages().slice(0, 10);
-  const programmingLanguages = availableLanguagesObjs.map((lango)=> lango.aliases?.[0])
+  /**
+   * Get all available languages from monaco editor
+   * Slice the first 10 languages
+   * if alises is not null/undefines, Map the languages to get the aliases or names
+   * Unshift the "HTML", "CSS", "Javascript" languages to the beginning of the array
+   */
+  const availableLanguagesObjs = monaco.languages.getLanguages().slice(0, 10);
+  const programmingLanguages = availableLanguagesObjs.map((lango) => lango.aliases?.[0])
   programmingLanguages.unshift("HTML", "CSS", "Javascript");
 
 
@@ -82,7 +82,7 @@ export default function LanguageSelectBtn() {
             {...TransitionProps}
             style={{
               transformOrigin:
-              placement === 'top' ? 'center top' : 'center bottom',
+                placement === 'top' ? 'center top' : 'center bottom',
             }}
           >
             <Paper>
