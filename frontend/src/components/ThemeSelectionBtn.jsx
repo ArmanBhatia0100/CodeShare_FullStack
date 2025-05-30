@@ -8,22 +8,27 @@ import Paper from '@mui/material/Paper';
 import Popper from '@mui/material/Popper';
 import MenuItem from '@mui/material/MenuItem';
 import MenuList from '@mui/material/MenuList';
+import { useThemeStore } from '../store/themeStore';
+
 
 const options = ['vs', 'vs-dark'];
 
 export default function ThemeSelectionBtn() {
-
+  const { theme, setTheme } = useThemeStore();
+  
   const [open, setOpen] = React.useState(false);
   const anchorRef = React.useRef(null);
   const [selectedIndex, setSelectedIndex] = React.useState(1);
 
   const handleClick = () => {
-    console.info(`You clicked ${options[selectedIndex]}`);
+    setTheme(options[selectedIndex]);
+    console.info(`You clicked ${options[selectedIndex]}`);  
   };
 
   const handleMenuItemClick = (event, index) => {
     setSelectedIndex(index);
     setOpen(false);
+    setTheme(options[index]);
   };
 
   const handleToggle = () => {
@@ -53,6 +58,7 @@ export default function ThemeSelectionBtn() {
           aria-expanded={open ? 'true' : undefined}
           aria-label="select theme"
           aria-haspopup="menu"
+          value={theme}
           onClick={handleToggle}
         >
           <ArrowDropDownIcon />
@@ -80,9 +86,9 @@ export default function ThemeSelectionBtn() {
                   {options.map((option, index) => (
                     <MenuItem
                       key={option}
-                      disabled={index === 2}
                       selected={index === selectedIndex}
                       onClick={(event) => handleMenuItemClick(event, index)}
+                   
                     >
                       {option}
                     </MenuItem>

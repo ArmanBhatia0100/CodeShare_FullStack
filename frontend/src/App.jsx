@@ -7,11 +7,13 @@ import CopyButton from './components/CopyButton'
 import ShareButton from './components/ShareButton'
 import MonacoEditor from './components/monaco-editor/MonacoEditor'
 import defaultHTMLCode from './components/monaco-editor/defaultHTMLCode'
+import { useThemeStore } from './store/themeStore'
 
 
 
 function App() {
   const [code, setCode] = useState(defaultHTMLCode);
+  const { theme } = useThemeStore();
 
 
   return (
@@ -25,7 +27,7 @@ function App() {
         </div>
         ~
         {/* Editor */}
-        <div className="bg-white shadow-2xl m-auto mb-10 py-4 rounded-lg rounded-l-lg min-w-[80vw] max-w-[70vw] min-h-96 editor">
+        <div className={`${theme == "vs"?"bg-white":"bg-[#1e1e1e]"} shadow-2xl m-auto mb-10 py-4 rounded-lg rounded-l-lg min-w-[80vw] max-w-[70vw] min-h-96 editor`}>
           <main className='flex flex-col justify-center items-cente min-h-[80%]'>
             <MonacoEditor setCode={setCode} value={code} />
           </main>

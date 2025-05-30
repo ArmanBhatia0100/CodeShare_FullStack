@@ -1,9 +1,11 @@
 import React, { useRef } from "react";
 import PropTypes from "prop-types";
 import Editor from "@monaco-editor/react";
+import { useThemeStore } from "../../store/themeStore";
 
 export default function MonacoEditor({setCode, value}) {
   const editorRef = useRef(null);
+  const { theme } = useThemeStore();  
 
   function handleEditorDidMount(editor) {
     editorRef.current = editor;
@@ -21,7 +23,7 @@ export default function MonacoEditor({setCode, value}) {
         defaultValue={value}
         onMount={handleEditorDidMount}
         onChange={handleEditorChange}
-        theme="vs-dark"
+        theme={theme}
         options={{
           fontSize: 18,
           fontWeight: "bold",
