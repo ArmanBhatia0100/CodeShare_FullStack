@@ -9,9 +9,10 @@ import Popper from '@mui/material/Popper';
 import MenuItem from '@mui/material/MenuItem';
 import MenuList from '@mui/material/MenuList';
 
-const options = ['Dark', 'Light'];
+const options = ['vs', 'vs-dark'];
 
 export default function ThemeSelectionBtn() {
+
   const [open, setOpen] = React.useState(false);
   const anchorRef = React.useRef(null);
   const [selectedIndex, setSelectedIndex] = React.useState(1);

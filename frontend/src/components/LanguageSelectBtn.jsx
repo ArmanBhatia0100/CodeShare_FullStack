@@ -8,16 +8,27 @@ import Paper from '@mui/material/Paper';
 import Popper from '@mui/material/Popper';
 import MenuItem from '@mui/material/MenuItem';
 import MenuList from '@mui/material/MenuList';
+import * as monaco from "monaco-editor";
 
-const options = ['HTML', 'Javascript'];
 
 export default function LanguageSelectBtn() {
+/**
+ * Get all available languages from monaco editor
+ * Slice the first 10 languages
+ * if alises is not null/undefines, Map the languages to get the aliases or names
+ * Unshift the "HTML", "CSS", "Javascript" languages to the beginning of the array
+ */
+  const availableLanguagesObjs =  monaco.languages.getLanguages().slice(0, 10);
+  const programmingLanguages = availableLanguagesObjs.map((lango)=> lango.aliases?.[0])
+  programmingLanguages.unshift("HTML", "CSS", "Javascript");
+
+
   const [open, setOpen] = React.useState(false);
   const anchorRef = React.useRef(null);
   const [selectedIndex, setSelectedIndex] = React.useState(1);
 
   const handleClick = () => {
-    console.info(`You clicked ${options[selectedIndex]}`);
+    console.info(`You clicked ${programmingLanguages[selectedIndex]}`);
   };
 
   const handleMenuItemClick = (event, index) => {
@@ -44,7 +55,7 @@ export default function LanguageSelectBtn() {
         ref={anchorRef}
         aria-label="Button group with a nested menu"
       >
-        <Button variant='outlined' onClick={handleClick}>{options[selectedIndex]}</Button>
+        <Button variant='outlined' onClick={handleClick}>{programmingLanguages[selectedIndex]}</Button>
         <Button
           variant="outlined"
           size="small"
@@ -64,26 +75,27 @@ export default function LanguageSelectBtn() {
         role={undefined}
         transition
         disablePortal
+        placement="top-start"
       >
         {({ TransitionProps, placement }) => (
           <Grow
             {...TransitionProps}
             style={{
               transformOrigin:
-                placement === 'bottom' ? 'center top' : 'center bottom',
+              placement === 'top' ? 'center top' : 'center bottom',
             }}
           >
             <Paper>
               <ClickAwayListener onClickAway={handleClose}>
                 <MenuList id="split-button-menu" autoFocusItem>
-                  {options.map((option, index) => (
+                  {programmingLanguages.map((lang, index) => (
                     <MenuItem
-                      key={option}
+                      key={lang}
                       disabled={index === 2}
                       selected={index === selectedIndex}
                       onClick={(event) => handleMenuItemClick(event, index)}
                     >
-                      {option}
+                      {lang}
                     </MenuItem>
                   ))}
                 </MenuList>

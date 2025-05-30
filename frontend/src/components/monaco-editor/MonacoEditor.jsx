@@ -1,6 +1,5 @@
 import React, { useRef } from "react";
 import PropTypes from "prop-types";
-
 import Editor from "@monaco-editor/react";
 
 export default function MonacoEditor({setCode, value}) {
@@ -22,6 +21,20 @@ export default function MonacoEditor({setCode, value}) {
         defaultValue={value}
         onMount={handleEditorDidMount}
         onChange={handleEditorChange}
+        theme="vs-dark"
+        options={{
+          fontSize: 18,
+          fontWeight: "bold",
+          fontFamily: "monospace",
+          fontLigatures: false,
+          wordWrap: "on",
+          minimap: {
+            enabled: false,
+          },
+          showUnused: false,
+          folding: false,
+          
+        }}
       />
     </>
   );
@@ -29,4 +42,5 @@ export default function MonacoEditor({setCode, value}) {
 
 MonacoEditor.propTypes = {
   setCode: PropTypes.func.isRequired,
+  value: PropTypes.string.isRequired,
 };
