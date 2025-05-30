@@ -1,12 +1,15 @@
 import './App.css'
-import React from 'react'
+import React, { useState } from 'react'
 import logo from './assets/images/NoteCodeLogo.svg'
 import LanguageSelectBtn from './components/LanguageSelectBtn'
 import ThemeSelectionBtn from './components/ThemeSelectionBtn'
 import CopyButton from './components/CopyButton'
 import ShareButton from './components/ShareButton'
-function App() {
+import MonacoEditor from './components/monaco-editor/MonacoEditor'
+import defaultHTMLCode from './components/monaco-editor/defaultHTMLCode'
 
+function App() {
+  const [code, setCode] = useState(defaultHTMLCode);
 
   return (
     <React.Fragment>
@@ -20,15 +23,17 @@ function App() {
 
       {/* Editor */}
       <div className="editor shadow-2xl bg-white mb-10 min-h-96 max-w-[70vw] min-w-[80vw] rounded-lg m-auto py-4">
-        <main className='flex flex-col justify-center items-cente min-h-[80%] h-96'>
-          <div className="editor-container ">Editor</div>
+        <main className='flex flex-col justify-center items-cente min-h-[80%]'>
+          {/* <div className="editor-container border-2 border-b-red-800 rounded-lg"> */}
+            <MonacoEditor setCode={setCode} value={code} />
+          {/* </div> */}
         </main>
         <footer className='action-btns flex justify-between items-center px-8'>
           <div className='flex gap-2'>
             <LanguageSelectBtn  options={["Html", "Css", "Javascript"]}/>
             <ThemeSelectionBtn  options={["Dark", "Light"]}/></div>
           <div className='flex gap-2'>
-            <CopyButton buttonLable={"Copy"}/>
+            <CopyButton buttonLable={"Copy"} code={code} />
           <ShareButton buttonLable={"Share"}/>
           </div>
         </footer>

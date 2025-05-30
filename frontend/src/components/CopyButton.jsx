@@ -3,9 +3,9 @@ import Button from '@mui/material/Button';
 import ContentCopyIcon from '@mui/icons-material/ContentCopy';
 import PropTypes from 'prop-types';
 
-export default function BasicButtons({ buttonLable }) {
+export default function BasicButtons({ buttonLable, code }) {
     return (
-        <Button variant="outlined" startIcon={<ContentCopyIcon />}>
+        <Button variant="outlined" startIcon={<ContentCopyIcon />} onClick={() => alert(code)}>
             {buttonLable}
         </Button>
     );
@@ -13,4 +13,5 @@ export default function BasicButtons({ buttonLable }) {
 
 BasicButtons.propTypes = {
     buttonLable: PropTypes.string.isRequired,
+    code: PropTypes.string.isRequired,
 };
