@@ -2,12 +2,13 @@ import './App.css'
 import React from 'react'
 import logo from './assets/images/NoteCodeLogo.svg'
 import EditorContainer from './components/editor/EditorContainer'
+import HeroBackground from './assets/images/Hero-Background-notecode@2x.png'
 
 function App() {
 
   return (
     <React.Fragment>
-      <div className={`min-h-[100vh] min-w-screen bg-[url(src/assets/images/Hero-Background-notecode@2x.png)] bg-cover bg-no-repeat pt-2`}>
+      <div className={`min-h-[100vh] min-w-screen bg-cover bg-no-repeat pt-2`}  style={{ backgroundImage: `url(${HeroBackground})` }}>
         
         {/* Header */}
         <div className="flex flex-col justify-between items-center pb-4 header">
