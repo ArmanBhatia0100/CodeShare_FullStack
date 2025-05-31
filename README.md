@@ -14,13 +14,13 @@ NoteCode is a fullstack web application that allows users to create, save, and s
 
 **Frontend:**
 - React
-- Monaco Editor / CodeMirror / Ace Editor
+- Monaco Editor
 - Zustand, useState, useEffect for state management
-- Tailwind CSS (or styled-components/CSS)
+- Tailwind CSS 
 
 **Backend:**
-- Node.js with Express.js (or Next.js)
-- MongoDB or PostgreSQL
+- Node.js with Express.js
+- MongoDB
 - UUID for unique ID generation
 
 ## 📦 Getting Started
@@ -34,7 +34,7 @@ NoteCode is a fullstack web application that allows users to create, save, and s
 
 1. **Clone the repository:**
    ```bash
-   git clone https://github.com/your-username/NoteCode.git
+   git clone https://github.com/ArmanBhatia0100/NoteCode.git
    cd NoteCode
    ```
 
@@ -105,7 +105,5 @@ NoteCode is a fullstack web application that allows users to create, save, and s
 
 MIT
 
----
-
-**Repository URL:** [your GitHub repo link here]  
-**Demo URL:** [your deployed app link here]
+--- 
+**Demo URL:** [https://notecodeshare.netlify.app/]
