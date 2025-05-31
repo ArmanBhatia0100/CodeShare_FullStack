@@ -50,8 +50,18 @@ export default function ThemeSelectionBtn() {
         ref={anchorRef}
         aria-label="Button group with a nested menu"
       >
-        <Button variant='outlined' onClick={handleClick}>{options[selectedIndex]}</Button>
         <Button
+          sx={{
+            padding: "5px",
+            backgroundColor:"#364153",
+            color: "white",
+          }} 
+        variant='outlined' onClick={handleClick}>{options[selectedIndex]=="vs"?"Light":"Dark"}</Button>
+        <Button
+          sx={{
+            backgroundColor: "#364153",
+            color: "white",
+          }} 
           size="small"
           variant='outlined'
           aria-controls={open ? 'theme-menu' : undefined}
@@ -90,7 +100,7 @@ export default function ThemeSelectionBtn() {
                       onClick={(event) => handleMenuItemClick(event, index)}
                    
                     >
-                      {option}
+                      {option=="vs"?"Light":"Dark"}
                     </MenuItem>
                   ))}
                 </MenuList>

@@ -28,7 +28,7 @@ function App() {
         ~
         {/* Editor */}
         <div className={`${theme == "vs"?"bg-white":"bg-[#1e1e1e]"} shadow-2xl m-auto mb-10 py-4 rounded-lg rounded-l-lg min-w-[80vw] max-w-[70vw] min-h-96 editor`}>
-          <main className='flex flex-col justify-center items-cente min-h-[80%]'>
+          <main className='flex flex-col justify-center items-cente pb-5 min-h-[80%]'>
             <MonacoEditor setCode={setCode} value={code} />
           </main>
 

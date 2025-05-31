@@ -5,8 +5,8 @@ import PropTypes from 'prop-types';
 
 export default function BasicButtons({ buttonLable, code }) {
     return (
-        <Button variant="outlined" startIcon={<ContentCopyIcon />} onClick={() => navigator.clipboard.writeText(code)}>
-            {buttonLable}
+        <Button startIcon={<ContentCopyIcon />} onClick={() => navigator.clipboard.writeText(code)}>
+             {"www.xx.....com"}
         </Button>
     );
 }

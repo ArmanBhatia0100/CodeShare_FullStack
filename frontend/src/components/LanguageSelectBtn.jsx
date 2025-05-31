@@ -55,9 +55,17 @@ export default function LanguageSelectBtn() {
         ref={anchorRef}
         aria-label="Button group with a nested menu"
       >
-        <Button variant='outlined' onClick={handleClick}>{programmingLanguages[selectedIndex]}</Button>
+        <Button variant='outlined'
+         sx={{
+          backgroundColor: "#364153",
+          color: "white",
+        }} onClick={handleClick}>{programmingLanguages[selectedIndex]}</Button>
         <Button
           variant="outlined"
+          sx={{
+            backgroundColor: "#364153",
+            color: "white",
+          }}
           size="small"
           aria-controls={open ? 'split-button-menu' : undefined}
           aria-expanded={open ? 'true' : undefined}

@@ -5,7 +5,7 @@ import PropTypes from 'prop-types';
 
 export default function BasicButtons({ buttonLable }) {
     return (
-        <Button variant="outlined" startIcon={<ContentCopyIcon />}>
+        <Button variant="contained" startIcon={<ContentCopyIcon />}>
             {buttonLable}
         </Button>
     );
