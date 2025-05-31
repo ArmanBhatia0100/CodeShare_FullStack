@@ -21,7 +21,6 @@ const defaultHTMLCode = `<!DOCTYPE html>
 
 <div id="editor"></div>
 
-<!-- Monaco Editor via CDN -->
 <script src="https://cdn.jsdelivr.net/npm/monaco-editor@latest/min/vs/loader.js"></script>
 <script>
   require.config({ paths: { 'vs': 'https://cdn.jsdelivr.net/npm/monaco-editor@latest/min/vs' }});
