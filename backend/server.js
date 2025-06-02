@@ -1,5 +1,6 @@
 import express from "express";
 import cors from "cors";
+import routes from "./routes.js";
 
 /**
  * Initialize the express app
@@ -14,17 +15,10 @@ app.use(cors());
 app.use(express.json());
 
 /**
- * Get the root route
+ * Use the routes
  */
-  app.get("/", (req, res) => {
-    res.json({ message: "Hello World" });
-  });
+app.use("/", routes);
 
-  
-app.post("/api/v1/share", (req, res) => {
-  const { code } = req.body;
-  res.json({status:200, message: "link generated", link: `https://www.google.com?code=11` });
-});
 /**
  * Listen to the port
  */
