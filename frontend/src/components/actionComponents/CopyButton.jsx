@@ -7,8 +7,8 @@ import { useCodeStore } from '../../store/codeStore';
 export default function BasicButtons() {
     const { code } = useCodeStore();
     return (
-        <Button startIcon={<ContentCopyIcon />} onClick={() => navigator.clipboard.writeText(code)}>
-             {"www.xx.....com"}
+        <Button startIcon={<ContentCopyIcon />} onClick={() => { navigator.clipboard.writeText(code) }}>
+            {"www.xx.....com"}
         </Button>
     );
 }

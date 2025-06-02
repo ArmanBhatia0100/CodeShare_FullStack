@@ -16,10 +16,15 @@ app.use(express.json());
 /**
  * Get the root route
  */
-app.get("/", (req, res) => {
-  res.send("Hello World");
-});
+  app.get("/", (req, res) => {
+    res.json({ message: "Hello World" });
+  });
 
+  
+app.post("/api/v1/share", (req, res) => {
+  const { code } = req.body;
+  res.json({status:200, message: "link generated", link: `https://www.google.com?code=11` });
+});
 /**
  * Listen to the port
  */
