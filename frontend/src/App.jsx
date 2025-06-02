@@ -5,7 +5,6 @@ import EditorContainer from './components/editor/EditorContainer'
 import HeroBackground from './assets/images/Hero-Background-notecode@2x.png'
 
 function App() {
-
   return (
     <React.Fragment>
       <div className={`min-h-[100vh] min-w-screen bg-cover bg-no-repeat pt-2`}  style={{ backgroundImage: `url(${HeroBackground})` }}>

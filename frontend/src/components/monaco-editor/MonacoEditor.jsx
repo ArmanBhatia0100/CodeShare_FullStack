@@ -1,11 +1,25 @@
-import React, { useRef } from "react";
+import React, { useRef, useEffect } from "react";
 import PropTypes from "prop-types";
 import Editor from "@monaco-editor/react";
 import { useThemeStore } from "../../store/themeStore";
+import { useCodeStore } from "../../store/codeStore";
+import * as monaco from "monaco-editor";
 
-export default function MonacoEditor({setCode, value}) {
+export default function MonacoEditor() {
+  const { defaultHTMLCode, setCode } = useCodeStore();
+  const { language } = useCodeStore();
+
   const editorRef = useRef(null);
   const { theme } = useThemeStore();  
+
+  useEffect(() => {
+    if (editorRef.current) {
+      const model = editorRef.current.getModel();
+      if (model) {
+        monaco.editor.setModelLanguage(model, language.toLowerCase());
+      }
+    }
+  }, [language]);
 
   function handleEditorDidMount(editor) {
     editorRef.current = editor;
@@ -19,8 +33,8 @@ export default function MonacoEditor({setCode, value}) {
     <>
       <Editor
         height="90vh"
-        defaultLanguage="html"
-        defaultValue={value}
+        language={language}
+        defaultValue={defaultHTMLCode}
         onMount={handleEditorDidMount}
         onChange={handleEditorChange}
         theme={theme}

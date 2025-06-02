@@ -9,6 +9,7 @@ import Popper from '@mui/material/Popper';
 import MenuItem from '@mui/material/MenuItem';
 import MenuList from '@mui/material/MenuList';
 import * as monaco from "monaco-editor";
+import { useCodeStore } from '../../store/codeStore';
 
 
 export default function LanguageSelectBtn() {
@@ -22,29 +23,43 @@ export default function LanguageSelectBtn() {
   const programmingLanguages = availableLanguagesObjs.map((lango) => lango.aliases?.[0])
   programmingLanguages.unshift("HTML", "CSS", "Javascript");
 
-
+  const { language, setLanguage } = useCodeStore();
   const [open, setOpen] = React.useState(false);
   const anchorRef = React.useRef(null);
-  const [selectedIndex, setSelectedIndex] = React.useState(1);
+  const [selectedIndex, setSelectedIndex] = React.useState(0);
 
+  /**
+   * When the button is clicked, set the language to the selected language
+   */
   const handleClick = () => {
-    console.info(`You clicked ${programmingLanguages[selectedIndex]}`);
+    setLanguage(programmingLanguages[selectedIndex]);
   };
 
+  /**
+   * When a language is selected, set the language to the selected language
+   * and close the menu
+   */
   const handleMenuItemClick = (event, index) => {
     setSelectedIndex(index);
     setOpen(false);
+    setLanguage(programmingLanguages[index]);
   };
+ 
 
+  /**
+   * Toggle the menu
+   */
   const handleToggle = () => {
     setOpen((prevOpen) => !prevOpen);
   };
 
+  /**
+   * Close the menu when the user clicks away
+   */
   const handleClose = (event) => {
     if (anchorRef.current && anchorRef.current.contains(event.target)) {
       return;
     }
-
     setOpen(false);
   };
 
@@ -55,11 +70,15 @@ export default function LanguageSelectBtn() {
         ref={anchorRef}
         aria-label="Button group with a nested menu"
       >
+        {/* Language Select Button */}
         <Button variant='outlined'
+        onClick={handleClick }
          sx={{
           backgroundColor: "#364153",
           color: "white",
-        }} onClick={handleClick}>{programmingLanguages[selectedIndex]}</Button>
+        }} >{language}</Button>
+
+        {/* Language Select Menu */}
         <Button
           variant="outlined"
           sx={{
@@ -73,6 +92,7 @@ export default function LanguageSelectBtn() {
           aria-haspopup="menu"
           onClick={handleToggle}
         >
+          {/* Language Select Icon */}
           <ArrowDropDownIcon />
         </Button>
       </ButtonGroup>
@@ -99,7 +119,6 @@ export default function LanguageSelectBtn() {
                   {programmingLanguages.map((lang, index) => (
                     <MenuItem
                       key={lang}
-                      disabled={index === 2}
                       selected={index === selectedIndex}
                       onClick={(event) => handleMenuItemClick(event, index)}
                     >
@@ -115,4 +134,5 @@ export default function LanguageSelectBtn() {
     </React.Fragment>
   );
 }
+
 
