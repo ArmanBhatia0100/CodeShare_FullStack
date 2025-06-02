@@ -1,3 +1,10 @@
 1. Copy button only visible when the share buttion is clicked or the code is alread live.
 2. Language selection button change the Language use. default: HTML
 3. 
+
+
+
+## User Story
+
+Who -> When -> What
+User click on -> Share button ->  produce a sharable link 
