@@ -1,9 +1,6 @@
 import axios from "axios";
-import dotenv from "dotenv";
 
-dotenv.config();
-
-const BASE_URL = process.env.BACKEND_URI;
+const BASE_URL = import.meta.env.VITE_BACKEND_URI;
 /**
  * Share the code
  * @param {string} code
