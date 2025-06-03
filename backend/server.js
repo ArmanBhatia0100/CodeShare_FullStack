@@ -11,7 +11,10 @@ const app = express();
  * Use the cors middleware
  * Use the express.json middleware
  */
-app.use(cors());
+app.use(cors({
+  origin: 'https://notecodeshare.netlify.app',
+  credentials: true
+}));
 app.use(express.json());
 
 /**
