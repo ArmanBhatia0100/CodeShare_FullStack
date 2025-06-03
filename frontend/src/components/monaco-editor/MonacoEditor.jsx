@@ -13,7 +13,6 @@ export default function MonacoEditor() {
   useEffect(() => {
     if (editorRef.current) {
       const model = editorRef.current.getModel();
-      console.log("update codeN",updatedCode)
       if (model) {
         monaco.editor.setModelLanguage(model, language.toLowerCase());
         model.setValue(String(updatedCode.code));

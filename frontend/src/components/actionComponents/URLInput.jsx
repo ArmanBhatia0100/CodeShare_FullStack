@@ -26,8 +26,7 @@ export default function BasicTextFields() {
 
     return ( 
       <form onSubmit={handleSubmit}>
-      <TextField id="filled-basic"label="Paste shared URL.." color="secondary"  onChange={(e)=>setCodeID(e.target.value)}
-      />
+      <TextField label="Enter CodeID" color="secondary" onChange={(e)=>setCodeID(e.target.value)} focused />
       </form>
   );
 }
