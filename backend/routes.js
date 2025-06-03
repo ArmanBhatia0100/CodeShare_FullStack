@@ -19,6 +19,12 @@ router.post("/api/v1/share/", async (req, res) => {
   res.json({status:200, publicLink: `http://localhost:3000/api/v1/share/${codeID._id}` });
 });
 
+/**
+ * Get the code
+ * @param {string} codeID
+ * @returns {Promise<string>}
+ */
+
 router.get("/api/v1/share/:codeID", async (req, res) => {
   const { codeID } = req.params;
 
@@ -27,6 +33,6 @@ router.get("/api/v1/share/:codeID", async (req, res) => {
   if(!codeDoc) {
     return res.status(400).json({status:400, message: "code not found"});
   }
-  res.send({status:200, code: codeDoc.code, language: codeDoc.language });
+  res.json({status:200, code: codeDoc.code, language: codeDoc.language });
 });
 export default router;
