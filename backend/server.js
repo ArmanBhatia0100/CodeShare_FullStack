@@ -22,7 +22,8 @@ app.use("/", routes);
 /**
  * Listen to the port
  */
-app.listen(3000, () => {
+const PORT = process.env.PORT || 3000;
+app.listen(PORT, () => {
   connectDB();
   console.log("Server is running on port 3000");
 });
