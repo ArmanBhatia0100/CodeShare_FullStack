@@ -1,4 +1,5 @@
 import { Router } from "express";
+import CodeModel from "./model/codeModel.js";
 
 const router = Router();
 
@@ -6,13 +7,26 @@ router.get("/", (req, res) => {
   res.json({ message: "Hello World" });
 });
 
-router.post("/api/v1/share", (req, res) => {
-  const { code } = req.body;
-  res.json({status:200, message: "link generated", link: `https://www.google.com?code=11` });
+router.post("/api/v1/share/", async (req, res) => {
+
+  const { code, language } = req.body;
+  
+  const codeID = await CodeModel.create({code, language});
+
+  if(!codeID) {
+    return res.status(400).json({status:400, message: "code not found"});
+  }
+  res.json({status:200, publicLink: `http://localhost:3000/api/v1/share/${codeID._id}` });
 });
 
-router.get("/api/v1/share/:codeID", (req, res) => {
+router.get("/api/v1/share/:codeID", async (req, res) => {
   const { codeID } = req.params;
-  res.json({status:200, message: "link generated", link: `https://www.google.com?code=11` });
+
+  const codeDoc = await CodeModel.findById(codeID);
+
+  if(!codeDoc) {
+    return res.status(400).json({status:400, message: "code not found"});
+  }
+  res.send({status:200, code: codeDoc.code, language: codeDoc.language });
 });
-export default router; 
+export default router;
