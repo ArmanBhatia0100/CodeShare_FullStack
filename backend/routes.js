@@ -10,13 +10,12 @@ router.get("/", (req, res) => {
 router.post("/api/v1/share/", async (req, res) => {
 
   const { code, language } = req.body;
-  
   const codeID = await CodeModel.create({code, language});
 
   if(!codeID) {
     return res.status(400).json({status:400, message: "code not found"});
   }
-  res.json({status:200, publicLink: `http://localhost:3000/api/v1/share/${codeID._id}` });
+  res.json({status:200, publicLink: codeID._id.toString() });
 });
 
 /**
